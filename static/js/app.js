@@ -29,11 +29,70 @@ function getPlot(id) {
 
         
         
+        
         //  bar pplot
+        var trace = {
+            x: sampleValues,
+            y: idOtu,
+            text: labels,
+            type:"bar",
+            orientation: "h",
+        };
+
+        var data = [trace];
+
+        var layout = {
+            title: "Top 10 OTU",
+            yaxis:{
+                tickmode:"linear",
+            },
+            margin: {
+                l: 100,
+                r: 100,
+                t: 30,
+                b: 20
+            }
+        };
+
+        Plotly.newPlot("bar", data, layout);
+
         
         // bubble
+        var trace1 = {
+            x: samples.otu_ids,
+            y: samples.sample_values,
+            mode: "markers",
+            marker: {
+                size: samples.sample_values,
+                color: samples.otu_ids
+            },
+            text: samples.otu_labels
+
+        };
+
+        var layout = {
+            xaxis:{title: "OTU ID"},
+            height: 600,
+            width: 1300
+        };
+
+        var data1 = [trace1];
+
+        Plotly.newPlot("bubble", data1, layout); 
 
         // pie
+        var tracePie = {
+            labels: idOtu,
+            values:sampleValues,
+            type:"pie",
+        }
+
+        var data = [tracePie]
+        
+        
+        Plotly.newPlot("gauge", data)
+
+    });    
 }
     
 // display metadata
