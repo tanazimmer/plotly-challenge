@@ -2,7 +2,7 @@
 function getPlot(id) {
     
     // get data
-    d3.json("data/samples.json").then((data)=> {
+    d3.json("samples.json").then((data)=> {
         console.log(data)
         var wfreq = data.metadata.map(d => d.wfreq)
         console.log(`Washing Freq: ${wfreq}`)
@@ -97,25 +97,53 @@ function getPlot(id) {
     
 // display metadata
 //function
-  //get data
-        
-        // get the metadata info for the demographic panel
-
-        // filter
-
-        // demos
-        
-        // clear table
-
-        // append
-}
-
-// function for change data
-}
-
-// get data
-    // select dropdown menu 
-
-        // id
-
-init();
+function getInfo(id) {
+    //get data
+      d3.json("samples.json").then((data)=> {
+          
+          // get the metadata info for the demographic panel
+          var metadata = data.metadata;
+  
+          console.log(metadata)
+  
+          // filter
+          var result = metadata.filter(meta => meta.id.toString() === id)[0];
+  
+          // demos
+          var demographicInfo = d3.select("#sample-metadata");
+          
+          // clear table
+          demographicInfo.html("");
+  
+          // append
+          Object.entries(result).forEach((key) => {   
+                  demographicInfo.append("h5").text(key[0].toUpperCase() + ": " + key[1] + "\n");    
+          });
+      });
+  }
+  
+  // function for change data
+  function optionChanged(id) {
+      getPlot(id);
+      getInfo(id);
+  }
+  
+  // get data
+  function init() {
+      // select dropdown menu 
+      var dropdown = d3.select("#selDataset");
+   
+      d3.json("samples.json").then((data)=> {
+          console.log(data)
+  
+          // id
+          data.names.forEach(function(name) {
+              dropdown.append("option").text(name).property("value");
+          });
+  
+          getPlot(data.names[0]);
+          getInfo(data.names[0]);
+      });
+  }
+  
+  init();
