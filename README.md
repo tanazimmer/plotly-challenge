@@ -2,6 +2,10 @@
 ## JS, D3, HTML, CSS
 ### Challenge: build an interactive dashboard to explore the dataset from [http://robdunnlab.com/projects/belly-button-biodiversity/results-and-data/](http://robdunnlab.com/projects/belly-button-biodiversity/results-and-data/)
 
+View Webpage: https://tanazimmer.github.io/plotly-challenge/
+
+![webpage](images/biodiversity_web)
+
 * Use D3 library to read in samples.json
 ```
  d3.json("samples.json").then((data)=> {
@@ -153,3 +157,6 @@ function getInfo(id) {
           getInfo(data.names[0]);
       });
 ```
+
+
+
