@@ -4,7 +4,7 @@
 
 View Webpage: https://tanazimmer.github.io/plotly-challenge/
 
-![webpage](images/biodiversity_web)
+![webpage](/images/biodiversity_web.PNG)
 
 * Use D3 library to read in samples.json
 ```
